@@ -1,12 +1,19 @@
 import pandas as pd
 
-# Load rainfall data
-df = pd.read_csv("Data/flood_training_data.csv")
+# ==============================
+# LOAD RAINFALL DATA
+# ==============================
+
+df = pd.read_csv("../Data/flood_training_data.csv")
 
 df["time"] = pd.to_datetime(df["time"])
 
-# Load flood events
-events = pd.read_csv("Data/flood_events.csv")
+
+# ==============================
+# LOAD FLOOD EVENTS
+# ==============================
+
+events = pd.read_csv("../Data/flood_events.csv")
 
 
 # ==============================

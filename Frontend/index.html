@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Flash Flood Prediction System</title>
+
+    <!-- Your CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Leaflet Map CSS -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div>
+            <h1>🌊 Flash Flood Prediction System</h1>
+            <p>Rainfall-Based Flood Risk Analysis</p>
+        </div>
+
+        <div class="status">
+            <span class="status-dot"></span>
+            SYSTEM ONLINE
+        </div>
+    </header>
+
+
+    <main>
+
+        <!-- TOP SECTION -->
+        <section class="top-grid">
+
+            <!-- MAP -->
+            <div class="card map-card">
+
+                <h2>📍 Location Monitoring</h2>
+
+                <div id="map"></div>
+
+            </div>
+
+
+            <!-- PREDICTION RESULT -->
+            <div class="card prediction-card">
+
+                <h2>⚠️ Flood Risk Status</h2>
+
+                <div id="result">
+
+                    <div class="probability">
+                        <span id="probability">--</span>
+                        <small>%</small>
+                    </div>
+
+                    <h2 id="risk-level">
+                        WAITING FOR DATA
+                    </h2>
+
+                    <p id="result-message">
+                        Enter rainfall data and analyze flood risk.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- RAINFALL INPUT -->
+        <section class="card input-card">
+
+            <h2>🌧️ Rainfall Data Input</h2>
+
+            <div class="input-grid">
+
+                <div>
+                    <label>Rainfall Intensity (mm/hr)</label>
+                    <input
+                        type="number"
+                        id="rainfall_mm_hr"
+                        step="any"
+                        placeholder="0.0"
+                    >
+                </div>
+
+
+                <div>
+                    <label>Rainfall Amount (mm)</label>
+                    <input
+                        type="number"
+                        id="rainfall_mm"
+                        step="any"
+                        placeholder="0.0"
+                    >
+                </div>
+
+
+                <div>
+                    <label>Rainfall - Last 1 Hour (mm)</label>
+                    <input
+                        type="number"
+                        id="rainfall_1hr"
+                        step="any"
+                        placeholder="0.0"
+                    >
+                </div>
+
+
+                <div>
+                    <label>Rainfall - Last 3 Hours (mm)</label>
+                    <input
+                        type="number"
+                        id="rainfall_3hr"
+                        step="any"
+                        placeholder="0.0"
+                    >
+                </div>
+
+
+                <div>
+                    <label>Rainfall - Last 6 Hours (mm)</label>
+                    <input
+                        type="number"
+                        id="rainfall_6hr"
+                        step="any"
+                        placeholder="0.0"
+                    >
+                </div>
+
+
+                <div>
+                    <label>Rainfall - Last 24 Hours (mm)</label>
+                    <input
+                        type="number"
+                        id="rainfall_24hr"
+                        step="any"
+                        placeholder="0.0"
+                    >
+                </div>
+
+            </div>
+
+
+            <button id="predict-button">
+                ANALYZE FLOOD RISK
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <!-- Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Your JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+</html>

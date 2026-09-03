@@ -5,7 +5,7 @@ import joblib
 # LOAD DATA
 # ==============================
 
-df = pd.read_csv("Data/flood_training_data.csv")
+df = pd.read_csv("../Data/flood_training_data.csv")
 
 df["time"] = pd.to_datetime(df["time"])
 
@@ -13,11 +13,9 @@ df["time"] = pd.to_datetime(df["time"])
 # LOAD MODEL
 # ==============================
 
-model = joblib.load("flood_model.pkl")
+model = joblib.load("../Models/flood_model.pkl")
 
 print("🔥 MODEL LOADED SUCCESSFULLY!")
-
-# ==============================
 # SELECT FEATURES
 # ==============================
 
