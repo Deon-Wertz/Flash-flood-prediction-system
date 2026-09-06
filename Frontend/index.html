@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Flash Flood Prediction System</title>
 
-    <!-- Your CSS -->
+    <!-- Main CSS -->
     <link rel="stylesheet" href="style.css">
 
-    <!-- Leaflet Map CSS -->
+    <!-- Leaflet CSS -->
     <link
         rel="stylesheet"
         href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -19,151 +19,937 @@
 
 <body>
 
-    <!-- HEADER -->
-    <header>
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header class="top-header">
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            🌊
+        </div>
+
         <div>
-            <h1>🌊 Flash Flood Prediction System</h1>
-            <p>Rainfall-Based Flood Risk Analysis</p>
+            <h1>FLASH FLOOD PREDICTION</h1>
+            <p>AI-Powered Early Warning & Monitoring System</p>
         </div>
 
-        <div class="status">
-            <span class="status-dot"></span>
-            SYSTEM ONLINE
+    </div>
+
+    <div class="system-status">
+        <span class="status-dot"></span>
+        SYSTEM ONLINE
+    </div>
+
+</header>
+
+
+<main>
+
+
+<!-- =========================================================
+     DEMO SCENARIOS
+========================================================= -->
+
+<section class="card scenario-section">
+
+    <div class="section-tag">
+        DEMONSTRATION MODE
+    </div>
+
+    <div class="section-heading">
+
+        <div>
+            <h2>🧪 Quick Test Scenarios</h2>
+
+            <p>
+                Simulate different rainfall conditions and observe
+                the AI flood-risk response.
+            </p>
         </div>
-    </header>
+
+        <button
+            type="button"
+            id="simulation-button"
+            class="simulation-button"
+        >
+            ▶ START LIVE SIMULATION
+        </button>
+
+    </div>
 
 
-    <main>
+    <div class="scenario-grid">
 
-        <!-- TOP SECTION -->
-        <section class="top-grid">
+        <button
+            type="button"
+            class="scenario-card"
+            id="normal-scenario"
+        >
 
-            <!-- MAP -->
-            <div class="card map-card">
+            <div class="scenario-icon">
+                ☁️
+            </div>
 
-                <h2>📍 Location Monitoring</h2>
+            <div>
+                <h3>Normal Conditions</h3>
+                <p>Low rainfall</p>
+            </div>
 
-                <div id="map"></div>
+        </button>
+
+
+        <button
+            type="button"
+            class="scenario-card"
+            id="moderate-scenario"
+        >
+
+            <div class="scenario-icon">
+                🌦️
+            </div>
+
+            <div>
+                <h3>Moderate Rain</h3>
+                <p>Increased monitoring</p>
+            </div>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="scenario-card"
+            id="heavy-scenario"
+        >
+
+            <div class="scenario-icon">
+                🌧️
+            </div>
+
+            <div>
+                <h3>Heavy Rainfall</h3>
+                <p>High flood probability</p>
+            </div>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="scenario-card"
+            id="extreme-scenario"
+        >
+
+            <div class="scenario-icon">
+                🚨
+            </div>
+
+            <div>
+                <h3>Extreme Event</h3>
+                <p>Emergency warning</p>
+            </div>
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     MAIN DASHBOARD GRID
+========================================================= -->
+
+<section class="dashboard-grid">
+
+
+<!-- =========================================================
+     LEFT SIDE
+========================================================= -->
+
+<div class="dashboard-left">
+
+
+<!-- =========================================================
+     RAINFALL INPUT
+========================================================= -->
+
+<section class="card input-card">
+
+    <div class="section-tag">
+        WEATHER DATA
+    </div>
+
+    <h2>🌧️ Rainfall Analysis Input</h2>
+
+    <p class="section-description">
+        Enter rainfall measurements manually or select a
+        demonstration scenario.
+    </p>
+
+
+    <div class="input-grid">
+
+
+        <div class="input-group">
+
+            <label for="rainfall_mm_hr">
+                Rainfall Intensity
+            </label>
+
+            <div class="input-wrapper">
+
+                <input
+                    type="number"
+                    id="rainfall_mm_hr"
+                    step="any"
+                    placeholder="0.0"
+                >
+
+                <span>mm/hr</span>
 
             </div>
 
+        </div>
 
-            <!-- PREDICTION RESULT -->
-            <div class="card prediction-card">
 
-                <h2>⚠️ Flood Risk Status</h2>
+        <div class="input-group">
 
-                <div id="result">
+            <label for="rainfall_mm">
+                Rainfall Amount
+            </label>
 
-                    <div class="probability">
-                        <span id="probability">--</span>
-                        <small>%</small>
-                    </div>
+            <div class="input-wrapper">
 
-                    <h2 id="risk-level">
-                        WAITING FOR DATA
-                    </h2>
+                <input
+                    type="number"
+                    id="rainfall_mm"
+                    step="any"
+                    placeholder="0.0"
+                >
 
-                    <p id="result-message">
-                        Enter rainfall data and analyze flood risk.
-                    </p>
-
-                </div>
+                <span>mm</span>
 
             </div>
 
-        </section>
+        </div>
 
 
-        <!-- RAINFALL INPUT -->
-        <section class="card input-card">
+        <div class="input-group">
 
-            <h2>🌧️ Rainfall Data Input</h2>
+            <label for="rainfall_1hr">
+                Last 1 Hour
+            </label>
 
-            <div class="input-grid">
+            <div class="input-wrapper">
 
-                <div>
-                    <label>Rainfall Intensity (mm/hr)</label>
-                    <input
-                        type="number"
-                        id="rainfall_mm_hr"
-                        step="any"
-                        placeholder="0.0"
-                    >
-                </div>
+                <input
+                    type="number"
+                    id="rainfall_1hr"
+                    step="any"
+                    placeholder="0.0"
+                >
 
-
-                <div>
-                    <label>Rainfall Amount (mm)</label>
-                    <input
-                        type="number"
-                        id="rainfall_mm"
-                        step="any"
-                        placeholder="0.0"
-                    >
-                </div>
-
-
-                <div>
-                    <label>Rainfall - Last 1 Hour (mm)</label>
-                    <input
-                        type="number"
-                        id="rainfall_1hr"
-                        step="any"
-                        placeholder="0.0"
-                    >
-                </div>
-
-
-                <div>
-                    <label>Rainfall - Last 3 Hours (mm)</label>
-                    <input
-                        type="number"
-                        id="rainfall_3hr"
-                        step="any"
-                        placeholder="0.0"
-                    >
-                </div>
-
-
-                <div>
-                    <label>Rainfall - Last 6 Hours (mm)</label>
-                    <input
-                        type="number"
-                        id="rainfall_6hr"
-                        step="any"
-                        placeholder="0.0"
-                    >
-                </div>
-
-
-                <div>
-                    <label>Rainfall - Last 24 Hours (mm)</label>
-                    <input
-                        type="number"
-                        id="rainfall_24hr"
-                        step="any"
-                        placeholder="0.0"
-                    >
-                </div>
+                <span>mm</span>
 
             </div>
 
-
-            <button id="predict-button">
-                ANALYZE FLOOD RISK
-            </button>
-
-        </section>
-
-    </main>
+        </div>
 
 
-    <!-- Leaflet JavaScript -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+        <div class="input-group">
 
-    <!-- Your JavaScript -->
-    <script src="script.js"></script>
+            <label for="rainfall_3hr">
+                Last 3 Hours
+            </label>
+
+            <div class="input-wrapper">
+
+                <input
+                    type="number"
+                    id="rainfall_3hr"
+                    step="any"
+                    placeholder="0.0"
+                >
+
+                <span>mm</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label for="rainfall_6hr">
+                Last 6 Hours
+            </label>
+
+            <div class="input-wrapper">
+
+                <input
+                    type="number"
+                    id="rainfall_6hr"
+                    step="any"
+                    placeholder="0.0"
+                >
+
+                <span>mm</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label for="rainfall_24hr">
+                Last 24 Hours
+            </label>
+
+            <div class="input-wrapper">
+
+                <input
+                    type="number"
+                    id="rainfall_24hr"
+                    step="any"
+                    placeholder="0.0"
+                >
+
+                <span>mm</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <button
+        type="button"
+        id="predict-button"
+        class="predict-button"
+    >
+        ⚡ ANALYZE FLOOD RISK
+    </button>
+
+</section>
+
+
+
+<!-- =========================================================
+     TELEMETRY
+========================================================= -->
+
+<section class="card telemetry-card">
+
+    <div class="section-tag">
+        LIVE TELEMETRY
+    </div>
+
+    <div class="telemetry-heading">
+
+        <div>
+            <h2>📡 Environmental Sensors</h2>
+
+            <p class="section-description">
+                Simulated real-time monitoring indicators.
+            </p>
+        </div>
+
+        <span class="live-badge">
+            ● LIVE
+        </span>
+
+    </div>
+
+
+    <div class="telemetry-grid">
+
+
+        <div class="telemetry-item">
+
+            <div class="telemetry-title">
+                <span>🌧️</span>
+                Rain Gauge
+            </div>
+
+            <div class="telemetry-value">
+                <span id="telemetry-rainfall">--</span>
+                <small>mm/hr</small>
+            </div>
+
+            <div class="telemetry-bar">
+                <div id="rainfall-indicator"></div>
+            </div>
+
+            <div class="telemetry-scale">
+                <span>0</span>
+                <span>25 alert</span>
+                <span>50</span>
+            </div>
+
+        </div>
+
+
+        <div class="telemetry-item">
+
+            <div class="telemetry-title">
+                <span>🌱</span>
+                Soil Saturation
+            </div>
+
+            <div class="telemetry-value">
+                <span id="soil-saturation">--</span>
+                <small>%</small>
+            </div>
+
+            <div class="telemetry-bar">
+                <div id="soil-indicator"></div>
+            </div>
+
+            <div class="telemetry-scale">
+                <span>0</span>
+                <span>70 alert</span>
+                <span>100</span>
+            </div>
+
+        </div>
+
+
+        <div class="telemetry-item">
+
+            <div class="telemetry-title">
+                <span>🌊</span>
+                River Level
+            </div>
+
+            <div class="telemetry-value">
+                <span id="river-level">--</span>
+                <small>m</small>
+            </div>
+
+            <div class="sensor-status" id="river-status">
+                Monitoring
+            </div>
+
+        </div>
+
+
+        <div class="telemetry-item">
+
+            <div class="telemetry-title">
+                <span>⛰️</span>
+                Slope Tilt
+            </div>
+
+            <div class="telemetry-value">
+                <span id="slope-tilt">--</span>
+                <small>°</small>
+            </div>
+
+            <div class="sensor-status" id="slope-status">
+                Stable
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     RESPONSE TEAM
+========================================================= -->
+
+<section class="card response-card">
+
+    <div class="section-tag">
+        EMERGENCY RESPONSE
+    </div>
+
+    <h2>🚑 Response Team Status</h2>
+
+    <div class="response-grid">
+
+
+        <div class="response-item">
+
+            <div class="response-icon red">
+                ●
+            </div>
+
+            <div>
+
+                <strong>NDRF Team Alpha</strong>
+
+                <p>
+                    Standby deployment unit
+                </p>
+
+            </div>
+
+            <span class="team-status">
+                READY
+            </span>
+
+        </div>
+
+
+        <div class="response-item">
+
+            <div class="response-icon orange">
+                ●
+            </div>
+
+            <div>
+
+                <strong>SDRF Team Bravo</strong>
+
+                <p>
+                    Regional response unit
+                </p>
+
+            </div>
+
+            <span class="team-status">
+                READY
+            </span>
+
+        </div>
+
+
+        <div class="response-item">
+
+            <div class="response-icon green">
+                ●
+            </div>
+
+            <div>
+
+                <strong>Medical Support</strong>
+
+                <p>
+                    Emergency assistance
+                </p>
+
+            </div>
+
+            <span class="team-status">
+                ONLINE
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+</div>
+
+
+
+<!-- =========================================================
+     RIGHT SIDE
+========================================================= -->
+
+<div class="dashboard-right">
+
+
+<!-- =========================================================
+     FLOOD RISK PREDICTION
+========================================================= -->
+
+<section class="card prediction-card">
+
+    <div class="prediction-header">
+
+        <div>
+
+            <div class="section-tag">
+                AI PREDICTION
+            </div>
+
+            <h2>⚠️ Flood Risk Status</h2>
+
+        </div>
+
+        <div id="prediction-status">
+            WAITING
+        </div>
+
+    </div>
+
+
+    <div id="result">
+
+        <div class="probability">
+
+            <span id="probability">
+                --
+            </span>
+
+            <small>%</small>
+
+        </div>
+
+
+        <p class="probability-label">
+            FLOOD PROBABILITY
+        </p>
+
+
+        <h2 id="risk-level">
+            WAITING FOR DATA
+        </h2>
+
+
+        <p id="result-message">
+            Select a demonstration scenario or enter rainfall
+            data to analyze flood risk.
+        </p>
+
+
+        <p class="last-update">
+
+            Last updated:
+
+            <span id="last-updated">
+                --
+            </span>
+
+        </p>
+
+    </div>
+
+
+
+    <!-- RISK SCALE -->
+
+    <div class="risk-scale-section">
+
+        <div class="risk-labels">
+
+            <span>LOW</span>
+            <span>MODERATE</span>
+            <span>HIGH</span>
+            <span>EXTREME</span>
+
+        </div>
+
+
+        <div class="risk-bar">
+
+            <div id="risk-indicator"></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     ML CONFIDENCE
+========================================================= -->
+
+<section class="card ml-card">
+
+    <div class="section-tag">
+        MACHINE LEARNING
+    </div>
+
+    <div class="ml-heading">
+
+        <h2>🧠 Model Prediction</h2>
+
+        <span>
+            NEXT 6 HOURS
+        </span>
+
+    </div>
+
+
+    <div class="model-grid">
+
+
+        <div class="model-item">
+
+            <div class="model-circle">
+
+                <span id="xgb-confidence">
+                    --
+                </span>
+
+            </div>
+
+            <div>
+
+                <h3>
+                    XGBoost
+                </h3>
+
+                <p>
+                    Landslide probability
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="model-item">
+
+            <div class="model-circle blue-circle">
+
+                <span id="lstm-confidence">
+                    --
+                </span>
+
+            </div>
+
+            <div>
+
+                <h3>
+                    LSTM
+                </h3>
+
+                <p>
+                    Flash flood probability
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     LOCATION INTELLIGENCE
+========================================================= -->
+
+<section class="card location-card">
+
+    <div class="section-tag">
+        MONITORING REGION
+    </div>
+
+    <h2>📍 Location Intelligence</h2>
+
+
+    <div id="map"></div>
+
+
+    <div class="location-info">
+
+
+        <div class="location-select-box">
+
+            <label for="location-select">
+                SELECT LOCATION
+            </label>
+
+            <select id="location-select">
+
+                <option value="Kangra">
+                    Kangra
+                </option>
+
+                <option value="Manali">
+                    Manali
+                </option>
+
+                <option value="Kullu">
+                    Kullu
+                </option>
+
+                <option value="Mandi">
+                    Mandi
+                </option>
+
+                <option value="Chamba">
+                    Chamba
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="coordinates-box">
+
+            <label>
+                COORDINATES
+            </label>
+
+            <p id="coordinates">
+                --
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     ALERT PANEL
+========================================================= -->
+
+<section
+    class="card alert-card"
+    id="alert-card"
+>
+
+    <div class="alert-icon">
+        ⚠️
+    </div>
+
+    <div class="alert-content">
+
+        <div class="section-tag">
+            SYSTEM ALERT
+        </div>
+
+        <h2 id="alert-title">
+            Monitoring Conditions
+        </h2>
+
+        <p id="alert-message">
+            No active emergency alert.
+        </p>
+
+    </div>
+
+    <div
+        class="alert-status"
+        id="alert-status"
+    >
+        NORMAL
+    </div>
+
+</section>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =========================================================
+     QUICK STATUS STRIP
+========================================================= -->
+
+<section class="status-strip">
+
+    <div class="status-box">
+
+        <span class="status-dot green-dot"></span>
+
+        <div>
+            <strong>Monitoring System</strong>
+            <small>Operational</small>
+        </div>
+
+    </div>
+
+
+    <div class="status-box">
+
+        <span class="status-dot"></span>
+
+        <div>
+            <strong>Sensor Network</strong>
+            <small id="sensor-status">
+                6 / 6 online
+            </small>
+        </div>
+
+    </div>
+
+
+    <div class="status-box">
+
+        <span class="status-dot orange-dot"></span>
+
+        <div>
+            <strong>Prediction Engine</strong>
+            <small>
+                Ready
+            </small>
+        </div>
+
+    </div>
+
+
+    <div class="status-box">
+
+        <span class="status-dot green-dot"></span>
+
+        <div>
+            <strong>Last Update</strong>
+            <small id="status-last-update">
+                --
+            </small>
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <div>
+        <strong>NEURAL NEXUS</strong>
+        <span> • </span>
+        Flash Flood Early Warning Prototype
+    </div>
+
+    <div>
+        AI • IoT • Geospatial Intelligence
+    </div>
+
+</footer>
+
+
+</main>
+
+
+
+<!-- =========================================================
+     LEAFLET
+========================================================= -->
+
+<script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+</script>
+
+
+<!-- =========================================================
+     MAIN JAVASCRIPT
+========================================================= -->
+
+<script src="script.js"></script>
 
 </body>
 </html>
